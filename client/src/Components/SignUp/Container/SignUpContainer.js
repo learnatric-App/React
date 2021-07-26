@@ -1,10 +1,13 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
+import { StyleSheet, css } from 'aphrodite-jss';
 
 import SignUp from '../SignUp';
 import Congrats from '../Congrats';
 import CreateChildAccount from '../CreateChildAccount/CreateChildAccount';
+
+import BrickBackground from '../../Common/Images/brickBackground.jpg'
 
 export const SignUpContext = createContext();
 
@@ -12,7 +15,7 @@ export default function SignUpContainer() {
     const history = useHistory();
 
     const [isFormSubmit, setIsFormSubmit] = useState(false);
-    const [childCount, setChildCount] = useState(1);
+    const [childCount, setChildCount] = useState(3);
     const [planSelected, setPlanSelected] = useState('Monthly');
     const [price, setPrice] = useState(29);
     const [allPaymentFormValues, setAllPaymentFormValues] = useState({
@@ -70,9 +73,11 @@ export default function SignUpContainer() {
             allParentInfoFormVals, setAllParentInfoFormVals, 
             stepInProcess, setStepInProcess
         }}>
-            {stepInProcess.becomeAmember && <SignUp />}
-            {stepInProcess.congrats && <Congrats />}
-            {stepInProcess.setChildAccount && <CreateChildAccount />}
+            <div style={{backgroundImage: `url(${BrickBackground})`, height: '100%',}}>
+                {stepInProcess.becomeAmember && <SignUp />}
+                {stepInProcess.congrats && <Congrats />}
+                {stepInProcess.setChildAccount && <CreateChildAccount />}
+            </div>
         </SignUpContext.Provider>
     )
 }

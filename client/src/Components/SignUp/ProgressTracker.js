@@ -45,12 +45,12 @@ export default function ProgressTracker() {
 const styles = StyleSheet.create({
     MainContainer: {
         display: 'grid',
-        gridTemplateColumns: '33vw 33vw 33vw',
+        gridTemplateColumns: '33% 33% 33%',
         height: '80px',
         width: '100%',
         backgroundColor: '#e3e2de',
         borderRadius: '20px',
-        marginTop: '5px',
+        // marginTop: '5px',
     },
     StepContainer: {
         display: 'flex',

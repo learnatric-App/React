@@ -10,11 +10,11 @@ const bodyText = 'Our curriculum is based on the US Federal Core Standards and w
 const checkBoxText = "I am okay with Learnatric emailing my child’s teacher periodically about academic progress.";
 
 
-export default function FullExperience() {
+export default function FullExperience({register,handleSubmit,getValues,errors, isChecked,setIsChecked}) {
 
-    const [isChecked, setIsChecked] = useState(false);
+    // const [isChecked, setIsChecked] = useState(false);
 
-    const { register, handleSubmit, getValues, formState: { errors } } = useForm();
+    // const { register, handleSubmit, getValues, formState: { errors } } = useForm();
 
     return (
         <div className={css(styles.MainContainer)}>
@@ -52,7 +52,7 @@ export default function FullExperience() {
                         <input 
                             className={css(styles.InputContainer)}
                             type="email" 
-                            placeholder="Teachers email" 
+                            placeholder="Teacher's email" 
                             {...register("Teachers email", {})} />
                     </div>
                     <div className={css(styles.CheckboxContainer)}>

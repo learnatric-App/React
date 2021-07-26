@@ -40,8 +40,8 @@ export default function SignUp() {
     }
     return (
         <>
-        <ProgressTracker />
         <div className={css(styles.MainContainer)}>
+        <ProgressTracker />
             <form style={{display: 'grid', gridTemplateRows: '33vh 33vh 45vh', gridTemplateColumns:'50% 50%', height: '100%'}} onSubmit={handleSubmit(onSubmit)}>
                 <div className={css(styles.StaticInfoAndImageContainer)}>
                     <StaticContent1 />
@@ -155,7 +155,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginLeft: 'auto',
         marginRight: 'auto',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backgroundColor: '#E7A678',
+        borderRadius: '20px',
     },
     StaticInfoAndImageContainer: {
         gridRow: 1,

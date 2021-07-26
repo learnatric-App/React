@@ -8,15 +8,20 @@ import { SignUpContext } from '../Container/SignUpContainer';
 import FullExperience from './FullExperience';
 
 const Form = ({index}) => {
+    const { register, handleSubmit, getValues, formState: { errors } } = useForm();
+    const [isChecked, setIsChecked] = useState(false);
+    const [isSaved, setIsSaved] = useState(false);
 
     console.log('key: ', index)
-    const { register, handleSubmit, getValues, formState: { errors } } = useForm();
+    const onSubmit = (data) => {
+        console.log('data: ', data, 'isChecked: ', isChecked)
+        setIsSaved(true);
+    }
 
-    
     return (
-        <div className={css(styles.Form)}>
+        <div className={css(isSaved ? styles.FormSaved : styles.Form)}>
             <div className={css(styles.HeadderText)}>Create Student {index === 0 ? '' : index+1+"'s"} Account</div>
-            <form className={css(styles.FormContainer)}>
+            <form className={css(styles.FormContainer)} onSubmit={handleSubmit(onSubmit)}>
                 <div className={css(styles.ChildFormContainer)}>
                     <input 
                         name="FirstName"
@@ -78,7 +83,8 @@ const Form = ({index}) => {
                         </select>
                     </div>
                 </div>
-                <FullExperience />
+                <FullExperience register={register} handleSubmit={handleSubmit} getValues={getValues} errors={errors} isChecked={isChecked} setIsChecked={setIsChecked}/>
+                <input className={css(styles.SubmitButton)} type="submit" value="Save"/>
             </form>
         </div>
     )
@@ -87,13 +93,15 @@ const Form = ({index}) => {
 export default function CreateChildAccount() {
 
     const { childCount } = useContext(SignUpContext);
-    console.log(childCount);
-    const children = new Array(childCount)
+    // const { register, handleSubmit, getValues, formState: { errors } } = useForm();
+
+    //register, handleSubmit, getValues, errors register={register} handleSubmit={handleSubmit} getValues={getValues} errors={errors}
     return (
         <>
             <ProgressTracker />
-            <div className={css(styles.MainContainer)}>
-                {Array.from(Array(childCount)).map((child, index) => <Form key={index} index={index} />)}
+            <div className={css(styles.MainContainer)} >
+                {Array.from(Array(childCount)).map((child, index) => <Form key={index} index={index}  />)}
+                
             </div>
         </>
     )
@@ -116,6 +124,9 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: '1em',
         paddingBottom: '5px'
+    },
+    FormSaved: {
+        display: 'none',
     },
     HeadderText: {
         fontSize: '30px',
@@ -168,5 +179,22 @@ const styles = StyleSheet.create({
         fontSize: '20px',
         fontFamily: 'Asap, sans-serif',
         alignSelf: 'center',
+    },
+    SubmitButton: {
+        fontSize: '22px',
+        fontWeight: 'bold',
+        color: 'white',
+        marginTop: '5px',
+        width: '498px',
+        alignSelf: 'center',
+        padding: '10px',
+        border: 'none',
+        borderRadius: '10px',
+        backgroundColor: '#4280e3',
+        ':hover': {
+            cursor: 'pointer',
+            outline: '3px solid',
+            
+        },
     },
 })
