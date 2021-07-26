@@ -1,7 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import { StyleSheet, css } from 'aphrodite';
 
@@ -39,16 +41,21 @@ export default function SignUp() {
             />
         )
     }
+    //style={{display: 'grid', gridTemplateRows: '33vh 33vh 45vh', gridTemplateColumns:'50% 50%', height: '100%'}} //was for the <form>
     return (
         <>
         {/* <div className={css(styles.MainContainer)}> */}
-        <Container>
-        <ProgressTracker />
-            <form style={{display: 'grid', gridTemplateRows: '33vh 33vh 45vh', gridTemplateColumns:'50% 50%', height: '100%'}} onSubmit={handleSubmit(onSubmit)}>
-                <div className={css(styles.StaticInfoAndImageContainer)}>
+        <Container className={css(styles.MainContainer)}>
+            <ProgressTracker />
+            <form  onSubmit={handleSubmit(onSubmit)}>
+                <Row>
+                {/* <div className={css(styles.StaticInfoAndImageContainer)}> */}
+                <Col>
                     <StaticContent1 />
-                </div>
-                <div className={css(styles.ParentInfoFormContainer)}>
+                </Col>
+                {/* </div> */}
+                {/* <div className={css(styles.ParentInfoFormContainer)}> */}
+                <Col>
                     <div className={css(styles.SideBySideInput)}>
                         <input 
                             name="FirstName"
@@ -127,21 +134,31 @@ export default function SignUp() {
                             <option value="Other">Other</option>
                         </select>
                     </div>
-                </div>
-                <div className={css(styles.BottomHalfContainer)}>
+                </Col>
+                {/* </div> */}
+                </Row>
+                <Row>
+                {/* <div className={css(styles.BottomHalfContainer)}> */}
+                <Col>
+                    <div className={css(styles.HearFromParentsContainer)}>
+                        <HearFromParents />
+                    </div>
+                </Col>
+                <Col>
                     <div className={css(styles.PlanContainer)}>
                         <ChoosePlan />
                     </div>
                     <div className={css(styles.ChooseChildrenContainer)}>
                         <ChooseChildren />
                     </div>
-                </div>
-                    <div className={css(styles.HearFromParentsContainer)}>
-                        <HearFromParents />
-                    </div>
-                    <div className={css(styles.PaymentFormContainer)}>
+                </Col>
+                {/* </div> */}
+                </Row>
+                <Row>
+                    {/* <div className={css(styles.PaymentFormContainer)}> */}
                         <PaymentInputs CardHolderName={CardHolderName}/>
-                    </div>
+                    {/* </div> */}
+                </Row>
             </form>
         {/* </div> */}
         </Container>
@@ -156,11 +173,12 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        // marginLeft: 'auto',
+        // marginRight: 'auto',
         overflow: 'hidden',
-        backgroundColor: '#E7A678',
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
         borderRadius: '20px',
+        // opacity: '.5'
     },
     StaticInfoAndImageContainer: {
         gridRow: 1,
@@ -214,10 +232,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     SelectDropDown: {
-        background:'#faeaa7',
+        background:'black',
         width: '70%',
         height: '30px',
-        color: 'black',
+        color: 'white',
         cursor: 'pointer',
         border:'1px solid black',
         borderRadius: '10px',

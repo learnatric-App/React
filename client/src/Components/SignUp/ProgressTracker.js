@@ -31,17 +31,19 @@ export default function ProgressTracker() {
                     <div className={css(styles.SelectedStepText)}>Congratulations!</div>
                 </div>}
             {stepInProcess.setChildAccount &&
-                <div className={css(styles.MainContainer)}>
-                    <div className={css(styles.StepContainer)}>
-                        <div className={css(styles.StepText)}>1. Become a Member</div>
-                    </div>
-                    <div className={css(styles.StepContainer)}>
-                        <div className={css(styles.SelectedStepText)}>2. Add Children</div>
-                    </div>
-                    <div className={css(styles.StepContainer)}>
-                        <div className={css(styles.StepText)}>3. Create Child Profile</div>
-                    </div>
-                </div>
+                <Container className={css(styles.MainContainer)}>
+                    <Row style={{width: '100%'}}>
+                        <Col className={css(styles.StepContainer)}>
+                            <div className={css(styles.StepText)}>1. Become a Member</div>
+                        </Col>
+                        <Col className={css(styles.StepContainer)}>
+                            <div className={css(styles.SelectedStepText)}>2. Add Children</div>
+                        </Col>
+                        <Col className={css(styles.StepContainer)}>
+                            <div className={css(styles.StepText)}>3. Create Child Profile</div>
+                        </Col>
+                    </Row>
+                </Container>
             }
         </>
     )
@@ -62,11 +64,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // marginTop: 'auto',
-        // marginBottom: 'auto',
     },
     StepText: {
-        
         fontFamily: 'Asap, sans-serif',
         fontSize: '20px',
     },
