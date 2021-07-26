@@ -7,7 +7,7 @@ import SignUp from '../SignUp';
 import Congrats from '../Congrats';
 import CreateChildAccount from '../CreateChildAccount/CreateChildAccount';
 
-import BrickBackground from '../../Common/Images/brickBackground.jpg'
+import learnBackground from '../../Common/Images/learnBackground.jpg'
 
 export const SignUpContext = createContext();
 
@@ -73,7 +73,8 @@ export default function SignUpContainer() {
             allParentInfoFormVals, setAllParentInfoFormVals, 
             stepInProcess, setStepInProcess
         }}>
-            <div style={{backgroundImage: `url(${BrickBackground})`, height: '100%',}}>
+            <div style={{backgroundImage: `url(${learnBackground})`, backgroundRepeat: 'no-repeat',backgroundSize: 'cover',
+            overflow: 'hidden',}}>
                 {stepInProcess.becomeAmember && <SignUp />}
                 {stepInProcess.congrats && <Congrats />}
                 {stepInProcess.setChildAccount && <CreateChildAccount />}

@@ -1,25 +1,31 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import { SignUpContext } from './Container/SignUpContainer';
 
 export default function ProgressTracker() {
-
+    //style={{display: 'flex', alignItems: 'center',marginTop: 'auto', marginBottom: 'auto'}}
     const { stepInProcess, setStepInProcess } = useContext(SignUpContext);
     return (
         <>
             {stepInProcess.becomeAmember &&
-                <div className={css(styles.MainContainer)}>
-                    <div className={css(styles.StepContainer)}>
-                        <div className={css(styles.SelectedStepText)}>1. Become a Member</div>
-                    </div>
-                    <div className={css(styles.StepContainer)}>
-                        <div className={css(styles.StepText)}>2. Add Children</div>
-                    </div>
-                    <div className={css(styles.StepContainer)}>
-                        <div className={css(styles.StepText)}>3. Create Child Profile</div>
-                    </div>
-                </div>}
+                <Container className={css(styles.MainContainer)}>
+                    <Row style={{width: '100%'}}>
+                        <Col className={css(styles.StepContainer)}>
+                            <div className={css(styles.SelectedStepText)}>1. Become a Member</div>
+                        </Col>
+                        <Col className={css(styles.StepContainer)}>
+                            <div className={css(styles.StepText)}>2. Add Children</div>
+                        </Col>
+                        <Col className={css(styles.StepContainer)}>
+                            <div className={css(styles.StepText)}>3. Create Child Profile</div>
+                        </Col>
+                    </Row>
+                </Container>
+            }
             {stepInProcess.congrats &&
                 <div className={css(styles.CongratsContainer)}>
                     <div className={css(styles.SelectedStepText)}>Congratulations!</div>
@@ -44,20 +50,23 @@ export default function ProgressTracker() {
 
 const styles = StyleSheet.create({
     MainContainer: {
-        display: 'grid',
-        gridTemplateColumns: '33% 33% 33%',
         height: '80px',
-        width: '100%',
         backgroundColor: '#e3e2de',
         borderRadius: '20px',
-        // marginTop: '5px',
+        fontFamily: 'Asap, sans-serif',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
     },
     StepContainer: {
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        // marginTop: 'auto',
+        // marginBottom: 'auto',
     },
     StepText: {
+        
         fontFamily: 'Asap, sans-serif',
         fontSize: '20px',
     },

@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container'
 
 import { StyleSheet, css } from 'aphrodite';
 
@@ -40,7 +41,8 @@ export default function SignUp() {
     }
     return (
         <>
-        <div className={css(styles.MainContainer)}>
+        {/* <div className={css(styles.MainContainer)}> */}
+        <Container>
         <ProgressTracker />
             <form style={{display: 'grid', gridTemplateRows: '33vh 33vh 45vh', gridTemplateColumns:'50% 50%', height: '100%'}} onSubmit={handleSubmit(onSubmit)}>
                 <div className={css(styles.StaticInfoAndImageContainer)}>
@@ -141,7 +143,8 @@ export default function SignUp() {
                         <PaymentInputs CardHolderName={CardHolderName}/>
                     </div>
             </form>
-        </div>
+        {/* </div> */}
+        </Container>
         </>
     );
 }
