@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import images from 'react-payment-inputs/images';
 
 import Globe from '../Common/Images/Globe.png'
-import {SignUpContext} from './Container/SignUpContainer';
+import {SignUpContext} from './Context/SignUpContainer';
 
 export default function PaymentInputs({CardHolderName}) {
     const { childCount, planSelected, allPaymentFormValues, setAllPaymentFormValues, price, setPrice } = useContext(SignUpContext);

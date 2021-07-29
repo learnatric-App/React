@@ -11,14 +11,14 @@ import ChooseChildren from './ChooseChildren';
 import HearFromParents from './HearFromParents';
 import PaymentInputs from './PaymentInputs';
 
-import { SignUpContext } from './Container/SignUpContainer';
+import { SignUpContext } from './Context/SignUpContainer';
 
 
 
 
 export default function SignUp() {
 
-    const { allParentInfoFormVals, setAllParentInfoFormVals, isFormSubmit, setIsFormSubmit, } = useContext(SignUpContext);
+    const { allParentInfoFormVals, setAllParentInfoFormVals } = useContext(SignUpContext);
     const { register, handleSubmit, getValues, formState: { errors } } = useForm();
 
     const onSubmit = (data) =>{ 

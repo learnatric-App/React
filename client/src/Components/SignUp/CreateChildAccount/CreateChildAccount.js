@@ -3,11 +3,12 @@ import { StyleSheet, css } from 'aphrodite';
 import { useForm } from 'react-hook-form';
 
 import ProgressTracker from '../ProgressTracker';
-import { SignUpContext } from '../Container/SignUpContainer';
+import { SignUpContext } from '../Context/SignUpContainer';
+import { MainContext } from '../../../Contexts/AppMainContainer';
 
 import FullExperience from './FullExperience';
 
-const Form = ({index, setChildFormNumber, childFormNumber, childCount, setStepInProcess, stepInProcess, childData, setChildData }) => {
+const Form = ({index, setChildFormNumber, childFormNumber, childCount, setStepInProcess, stepInProcess, childData, setChildData, parentID }) => {
 
     const { register, handleSubmit, getValues, formState: { errors } } = useForm();
 
@@ -25,6 +26,7 @@ const Form = ({index, setChildFormNumber, childFormNumber, childCount, setStepIn
             schoolDistrict: data.schoolDistrict,
             teachersEmail: data.teachersEmail,
             teachersName: data.teachersName,
+            parentID: parentID,
             // isOkayToEmailTeacher: isOkayToEmailTeacher,
         })
         setChildFormNumber(childFormNumber + 1);
@@ -109,15 +111,12 @@ const Form = ({index, setChildFormNumber, childFormNumber, childCount, setStepIn
 
 export default function CreateChildAccount() {
 
-    const { childCount, setStepInProcess, stepInProcess, childData, setChildData, initialStateForAllChildData } = useContext(SignUpContext);
+    const { childCount, setStepInProcess, stepInProcess, childData, setChildData } = useContext(SignUpContext);
+    const {parentID} = useContext(MainContext);
     const [childFormNumber, setChildFormNumber] = useState(0);
 
-    useEffect(() => {
-        console.log('initialStateForAllChildData: ', initialStateForAllChildData)
-    }, [])
 
-
-    const children = Array.from(Array(childCount)).map((child, index) => <Form key={index} index={index} setChildFormNumber={setChildFormNumber} childFormNumber={childFormNumber} childCount={childCount} stepInProcess={stepInProcess} setStepInProcess={setStepInProcess} childData={childData} setChildData={setChildData}/>);
+    const children = Array.from(Array(childCount)).map((child, index) => <Form key={index} index={index} setChildFormNumber={setChildFormNumber} childFormNumber={childFormNumber} childCount={childCount} stepInProcess={stepInProcess} setStepInProcess={setStepInProcess} childData={childData} setChildData={setChildData} parentID={parentID}/>);
 
     return (
         <>

@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
@@ -7,11 +7,12 @@ import Congrats from '../Congrats';
 import CreateChildAccount from '../CreateChildAccount/CreateChildAccount';
 import StudentCreateProfile from '../StudentCreateProfile/StudentCreateProfile';
 
+import MainContext from '../../../Contexts/AppMainContainer';
+
 export const SignUpContext = createContext();
 
-export default function SignUpContainer() {
-    const history = useHistory();
-
+export default function SignUpContainer({ parentID, setParentID }) {
+    // const { setParentID } = useContext(MainContext);
     // const [isFormSubmit, setIsFormSubmit] = useState(false);
     const [childCount, setChildCount] = useState(1);
     const [planSelected, setPlanSelected] = useState('Monthly');
@@ -68,18 +69,18 @@ export default function SignUpContainer() {
         teachersName: '',
         schoolDistrict: '',
         isOkayToEmailTeacher: true,
+        parentID: null
     })
     //send all parent info and cc data to back end ad if all goes well render page to enter child data
-    const [initialStateForAllChildData, setInitialStateForAllChildData] = useState({})
+    // const [initialStateForAllChildData, setInitialStateForAllChildData] = useState({})
     useEffect(() => {
         if (!allParentInfoFormVals.isError && !allPaymentFormValues.isError) {
-            console.log('NO ERRORS')
             let initialStateForChildObject = {};
             for (let i = 1; i <= childCount; i++) {
                 initialStateForChildObject[`child${i}`] = ''
 
             }
-            setInitialStateForAllChildData(initialStateForChildObject)
+            // setInitialStateForAllChildData(initialStateForChildObject)
             const data = {
                 parent_info: allParentInfoFormVals, 
                 payment_info: allPaymentFormValues,
@@ -90,6 +91,7 @@ export default function SignUpContainer() {
             axios.post('parentSignUp', data)
             .then(response => {
                 console.log('axiosResp', response);
+                setParentID(response.data.parentDBid)
                 setStepInProcess({...stepInProcess, becomeAmember: false, congrats: true})
             })
             .catch(error => {
@@ -99,18 +101,14 @@ export default function SignUpContainer() {
     }, [allParentInfoFormVals, allPaymentFormValues])
     //sen
     useEffect(() => {
-        if (childData.submitWasClicked) {
-            let num = `child${childData.childNumber}`
+        if (childData.submitWasClicked ) {
             if (!childData.isLastChild) {
-                // dataForAllChildren[`${childData.firstName}`] = childData
-                setInitialStateForAllChildData({...initialStateForAllChildData, ...childData})
-                console.log('all data not last : ', initialStateForAllChildData)
+                axios.post('childData', childData)
             } else {
                 // dataForAllChildren[`${childData.firstName}`] = childData
-                setInitialStateForAllChildData({...initialStateForAllChildData, ...childData})
-                console.log('all data last : ', initialStateForAllChildData)
 
             }
+            console.log()
         }
     },[childData])
 
@@ -124,7 +122,6 @@ export default function SignUpContainer() {
             allParentInfoFormVals, setAllParentInfoFormVals, 
             stepInProcess, setStepInProcess, 
             childData, setChildData,
-            initialStateForAllChildData, 
         }}>
             {stepInProcess.becomeAmember && <SignUp />}
             {stepInProcess.congrats && <Congrats />}
