@@ -15,9 +15,18 @@ app.post('/parentSignUp', (req, res) => {
     // console.log('req: ', req.body)
     parent.addParent(req.body)
     .then((id) => {
-        res.status(202).send(id);
+        console.log('id: ', id)
+        res.send({parentDBid: id});
     })
+    .catch((err) => console.log('err in server from save parent: ',err))
 });
+
+app.post('/childData', (req, res) => {
+    console.log('child data: ', req.body)
+    const child = new NewAccount();
+
+    child.addChild(req.body)
+})
 
 app.post('/login', (req, res) => {
     console.log('req: ', req.body);

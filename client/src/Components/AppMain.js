@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import {
     Switch,
     Route,
@@ -7,22 +7,17 @@ import {
 import NavBar from './Common/NavBar';
 import Home from './Home/Home';
 // import Login from './Login/Login';
-import SignUpContainer from './SignUp/Container/SignUpContainer';
+import SignUpContainer from './SignUp/Context/SignUpContainer';
 
-import {MainContext} from '../Contexts/MainContext';
+import {MainContext} from '../Contexts/AppMainContainer';
 
 
 export default function AppMain() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false); 
-    const [isLoginError, setIsLoginError] = useState(false);
 
-    useEffect(() => {
-        console.log('isLoggedIn: ', isLoggedIn)
-    }, [isLoggedIn])
-
-
+const { parentID, setParentID } = useContext(MainContext)
     return (
-        <MainContext.Provider value={{isLoggedIn, setIsLoggedIn, isLoginError, setIsLoginError}}>
+        // <MainContext.Provider value={{isLoggedIn, setIsLoggedIn, isLoginError, setIsLoginError}}>
+            <>
             <NavBar />
             <Switch>
                 <Route exact path="/">
@@ -33,9 +28,10 @@ export default function AppMain() {
                     <Login/>
                 </Route> */}
                 <Route path="/signup">
-                    <SignUpContainer/>
+                    <SignUpContainer parentID={parentID} setParentID={setParentID} />
                 </Route>
             </Switch>
-        </MainContext.Provider>
+            </>
+       // {/* </MainContext.Provider> */}
     )
 }

@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import {StyleSheet, css} from 'aphrodite';
 
-import { MainContext } from '../../Contexts/MainContext';
+import { MainContext } from '../../Contexts/AppMainContainer';
 
 export default function Login() {
     const [userName, setUserName] = useState('');
