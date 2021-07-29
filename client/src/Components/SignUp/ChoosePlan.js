@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-import {SignUpContext} from './Container/SignUpContainer';
+import {SignUpContext} from './Context/SignUpContainer';
 
 
 const menu = [

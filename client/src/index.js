@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 
-import AppMain from './Components/AppMain';
+import AppMainContainer from './Contexts/AppMainContainer';
 
 const root = document.getElementById('root');
 
 ReactDOM.render(
         <Router>
-            <AppMain/> 
+            <AppMainContainer/> 
         </Router>,
     root
 );

@@ -73,7 +73,6 @@ export default function SignUpContainer() {
     const [initialStateForAllChildData, setInitialStateForAllChildData] = useState({})
     useEffect(() => {
         if (!allParentInfoFormVals.isError && !allPaymentFormValues.isError) {
-            console.log('NO ERRORS')
             let initialStateForChildObject = {};
             for (let i = 1; i <= childCount; i++) {
                 initialStateForChildObject[`child${i}`] = ''

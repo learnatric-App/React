@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite';
 import { useForm } from 'react-hook-form';
 
 import ProgressTracker from '../ProgressTracker';
-import { SignUpContext } from '../Container/SignUpContainer';
+import { SignUpContext } from '../Context/SignUpContainer';
 
 import FullExperience from './FullExperience';
 

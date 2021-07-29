@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite';
 import backGroundRobot from '../Common/Images/backGroundRobot.png';
 
 import ProgressTracker from './ProgressTracker';
-import { SignUpContext } from './Container/SignUpContainer';
+import { SignUpContext } from './Context/SignUpContainer';
 
 export default function Congrats() {
 

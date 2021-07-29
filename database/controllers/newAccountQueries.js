@@ -17,7 +17,7 @@ class NewAccount {
       // console.log('newParent id: ', newParent.id)
       return newParent.id;
     } catch (e) {
-      console.log(e)
+      throw new Error(e);
     }
   }
 

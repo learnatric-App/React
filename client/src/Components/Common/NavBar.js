@@ -5,7 +5,7 @@ import { StyleSheet, css } from 'aphrodite';
 
 import logo from './Images/LearnAtric.png';
 import Login from '../Login/Login';
-import { MainContext } from '../../Contexts/MainContext';
+import { MainContext } from '../../Contexts/AppMainContainer';
 
 
 export default function NavBar() {
