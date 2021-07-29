@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import {
     Switch,
     Route,
@@ -9,12 +9,12 @@ import Home from './Home/Home';
 // import Login from './Login/Login';
 import SignUpContainer from './SignUp/Context/SignUpContainer';
 
-// import {MainContext} from '../Contexts/AppMainContext';
+import {MainContext} from '../Contexts/AppMainContainer';
 
 
 export default function AppMain() {
 
-
+const { parentID, setParentID } = useContext(MainContext)
     return (
         // <MainContext.Provider value={{isLoggedIn, setIsLoggedIn, isLoginError, setIsLoginError}}>
             <>
@@ -28,7 +28,7 @@ export default function AppMain() {
                     <Login/>
                 </Route> */}
                 <Route path="/signup">
-                    <SignUpContainer/>
+                    <SignUpContainer parentID={parentID} setParentID={setParentID} />
                 </Route>
             </Switch>
             </>

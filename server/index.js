@@ -21,6 +21,13 @@ app.post('/parentSignUp', (req, res) => {
     .catch((err) => console.log('err in server from save parent: ',err))
 });
 
+app.post('/childData', (req, res) => {
+    console.log('child data: ', req.body)
+    const child = NewAccount();
+
+    child.addChild(req.body)
+})
+
 app.post('/login', (req, res) => {
     console.log('req: ', req.body);
     if (req.body.password.length > 6) {
