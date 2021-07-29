@@ -21,6 +21,26 @@ class NewAccount {
     }
   }
 
+  addChild = async (data) => {
+    console.log('data: ', data)
+    try {
+      const newChild = await Children.create({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        birthday: data.birthday,
+        gender: data.gender,
+        grade: data.grade,
+        school: data.school,
+        teachersName: data.teachersName,
+        teachersEmail: data.teachersEmail,
+        schoolDistrict: data.schoolDistrict,
+        isOkayToEmailTeacher: data.isOkayToEmailTeacher,
+        parentId: data.parentID,
+      })
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
 
 }
 

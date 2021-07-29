@@ -23,7 +23,7 @@ app.post('/parentSignUp', (req, res) => {
 
 app.post('/childData', (req, res) => {
     console.log('child data: ', req.body)
-    const child = NewAccount();
+    const child = new NewAccount();
 
     child.addChild(req.body)
 })
