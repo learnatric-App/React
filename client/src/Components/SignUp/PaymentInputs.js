@@ -1,11 +1,36 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import { PaymentInputsWrapper, usePaymentInputs } from 'react-payment-inputs';
+// import {Elements} from '@stripe/react-stripe-js';
+// import {loadStripe} from '@stripe/stripe-js';
+import {CardElement} from '@stripe/react-stripe-js';
+
 import { useForm } from 'react-hook-form';
 import images from 'react-payment-inputs/images';
 
 import Globe from '../Common/Images/Globe.png'
 import {SignUpContext} from './Context/SignUpContainer';
+/**
+ * <CardElement
+                          options={{
+                            style: {
+                              base: {
+                                fontSize: '16px',
+                                color: 'black',
+                                '::placeholder': {
+                                  color: '#aab7c4',
+                                },
+                              },
+                              invalid: {
+                                color: '#9e2146',
+                              },
+                            },
+                          }}
+                        />
+ * 
+ * /
+*/
+
 
 export default function PaymentInputs({CardHolderName}) {
     const { childCount, planSelected, allPaymentFormValues, setAllPaymentFormValues, price, setPrice } = useContext(SignUpContext);
@@ -56,13 +81,29 @@ export default function PaymentInputs({CardHolderName}) {
                 <div >
                     <CardHolderName />
                     <div style={{display: 'flex', justifyContent: 'center', marginTop: '.5em'}}>
-                        <PaymentInputsWrapper {...wrapperProps}>
+                        {/* <PaymentInputsWrapper {...wrapperProps}>
                             <svg {...getCardImageProps({ images })} />
                             <input name="card_number"{...getCardNumberProps({ onChange: handleChange})} />
                             <input name="expire" {...getExpiryDateProps({ onChange: handleChange})} />
                             <input name="cvc" {...getCVCProps({ onChange: handleChange})} />
                             <input {...getZIPProps({ onChange: handleChange })} />
-                        </PaymentInputsWrapper>
+                        </PaymentInputsWrapper> */}
+                        <CardElement
+                          options={{
+                            style: {
+                              base: {
+                                fontSize: '16px',
+                                color: 'black',
+                                '::placeholder': {
+                                  color: '#aab7c4',
+                                },
+                              },
+                              invalid: {
+                                color: '#9e2146',
+                              },
+                            },
+                          }}
+                        />
                     </div>
                     <div style={{display: 'flex', flexDirection: 'column',justifyContent: 'center', }}>
                         <input className={css(styles.SubmitButton)} type="submit" value="Join"/>

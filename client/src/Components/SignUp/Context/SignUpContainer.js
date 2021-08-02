@@ -1,6 +1,8 @@
 import React, { useState, createContext, useEffect, useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
 
 import SignUp from '../SignUp';
 import Congrats from '../Congrats';
@@ -8,6 +10,7 @@ import CreateChildAccount from '../CreateChildAccount/CreateChildAccount';
 import StudentCreateProfile from '../StudentCreateProfile/StudentCreateProfile';
 
 import MainContext from '../../../Contexts/AppMainContainer';
+const stripePromise = loadStripe('pk_test_51J2zzME260ZusP4JwfTcUB8mmbeIu09aAv1bixaOocy8VRK6zbagC0kTS94xnJsFRucW8r1ATpq5drjIp1l0vwfr00jUEGf07H');
 
 export const SignUpContext = createContext();
 
@@ -123,7 +126,11 @@ export default function SignUpContainer({ parentID, setParentID }) {
             stepInProcess, setStepInProcess, 
             childData, setChildData,
         }}>
-            {stepInProcess.becomeAmember && <SignUp />}
+            {stepInProcess.becomeAmember &&
+            <Elements stripe={stripePromise}>
+                <SignUp />
+            </Elements>
+             }
             {stepInProcess.congrats && <Congrats />}
             {stepInProcess.setChildAccount && <CreateChildAccount />}
             {stepInProcess.createStudentProfile && <StudentCreateProfile />}

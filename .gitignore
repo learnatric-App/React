@@ -29,3 +29,6 @@ public/build
 
 #AWS key
 *.pem
+
+
+.env
